@@ -10,6 +10,7 @@ module.exports = {
   },
   variants: {
     extend: {
+        filter: ['hover', 'focus'],
         grayscale: ['hover', 'focus'],
     },
   },

@@ -13,7 +13,7 @@
             <form action="{{ route('dropzoneFileUpload') }}" id="file-upload" class="dropzone border-0" enctype="multipart/form-data" style="border: none; background-color: inherit;">
                 @csrf
                 <div class="mt-6 border-4 border-dashed border-gray-300 bg-white p-6 dz-message">
-                    <img src="{{ asset('images/arrow-upload-icon.png')}}" class="mx-auto filter grayscale hover:grayscale-0" />
+                    <img src="{{ asset('images/arrow-upload-icon.png')}}" class="mx-auto filter grayscale hover:filter-none transition-all" />
                 </div>
             </form>
         </div>
