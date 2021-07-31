@@ -17,5 +17,5 @@ mix.js('resources/js/app.js', 'public/js')
     ]);
 
 mix.browserSync({
-    proxy: 'sg-tech-test.test',
+    proxy: 'localhost',
 });
