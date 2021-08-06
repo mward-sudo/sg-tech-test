@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileUploadController;
+use App\Models\Homeowner;
+use App\Names\Parser;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +22,9 @@ Route::get('/', function () {
 });
 
 // Uploads
-Route::get('upload-ui', [FileUploadController::class, 'dropzoneUi' ]);
-Route::post('file-upload', [FileUploadController::class, 'dropzoneFileUpload' ])->name('dropzoneFileUpload');
+Route::get('upload-ui', [FileUploadController::class, 'dropzoneUi']);
+// Route::post('file-upload', [FileUploadController::class, 'dropzoneFileUpload' ])->name('dropzoneFileUpload');
+Route::post(
+    'file-upload',
+    'App\Http\Controllers\FileUploadController@dropzoneFileUpload'
+)->name('dropzoneFileUpload');
