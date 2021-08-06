@@ -3,11 +3,12 @@ version: '3'
 services:
     laravel.test:
         build:
-            context: ./vendor/laravel/sail/runtimes/8.0
+            context: ./docker/8.0
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
-        image: sail-7.4/app
+                XDEBUG: ${SAIL_DEBUG}
+        image: sail-8.0/app
         ports:
             - '${APP_PORT:-80}:80'
         environment:
