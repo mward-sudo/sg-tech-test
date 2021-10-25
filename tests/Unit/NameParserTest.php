@@ -23,11 +23,11 @@ class NameParser extends TestCase
             ['input' => 'Mr F. Fredrickson', 'response' => [['title' => 'Mr', 'first_name' => null, 'initial' => 'F', 'last_name' => 'Fredrickson',]]]
         ];
 
-        for ($i = 0; $i < count($namesAndResponses); $i++) {
-            $parser = new Parser($namesAndResponses[$i]['input']);
+        foreach ($namesAndResponses as $key => &$nameAndResponse) {
+            $parser = new Parser($nameAndResponse['input']);
             $parserResults = $parser->parse();
 
-            $this->assertEquals($namesAndResponses[$i]['response'], $parserResults, $i);
+            $this->assertEquals($nameAndResponse['response'], $parserResults, "Response does not match for array index $key ({$nameAndResponse['input']})");
         }
     }
 
@@ -41,7 +41,7 @@ class NameParser extends TestCase
         $namesAndResponses = [
             ['input' => 'Mr and Mrs Smith', 'response' => [
                 ['title' => 'Mrs', 'first_name' => null, 'initial' => null, 'last_name' => 'Smith',],
-                ['title' => 'Mr', 'first_name' => null, 'initial' => null, 'last_name' => 'Smith',],
+                ['title' => 'Mrs', 'first_name' => null, 'initial' => null, 'last_name' => 'Smith',],
             ]],
             ['input' => 'Mr Tom Staff and Mr John Doe', 'response' => [
                 ['title' => 'Mr', 'first_name' => "Tom", 'initial' => null, 'last_name' => "Staff",],
@@ -53,11 +53,11 @@ class NameParser extends TestCase
             ]]
         ];
 
-        for ($i = 0; $i < count($namesAndResponses); $i++) {
-            $parser = new Parser($namesAndResponses[$i]['input']);
+        foreach ($namesAndResponses as $key => &$nameAndResponse) {
+            $parser = new Parser($nameAndResponse['input']);
             $parserResults = $parser->parse();
 
-            $this->assertEquals($namesAndResponses[$i]['response'], $parserResults, $i);
+            $this->assertEquals($nameAndResponse['response'], $parserResults, "Response does not match for array index $key ({$nameAndResponse['input']})");
         }
     }
 }
