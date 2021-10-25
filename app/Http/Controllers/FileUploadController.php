@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Homeowner;
 use App\Names\Parser;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
 class FileUploadController extends Controller
@@ -46,6 +47,8 @@ class FileUploadController extends Controller
 
     private function parseFile(string $filename)
     {
+        $upload_time = Carbon::now();
+
         $file = public_path('upload') . "/{$filename}";
 
         /** Open the data file */
@@ -68,14 +71,13 @@ class FileUploadController extends Controller
 
             $parserRsults = $parser->parse();
             foreach ($parserRsults as $p) {
-                Log::debug($p);
-                $homeOwner = new Homeowner([
-                    'title' => $p['title'],
-                    'first_name' => $p['first_name'],
-                    'initial' => $p['initial'],
-                    'last_name' => $p['last_name'],
-                    'upload_file' => $filename,
-                ]);
+                $homeOwner = new Homeowner();
+                $homeOwner->title = $p['title'];
+                $homeOwner->first_name = $p['first_name'];
+                $homeOwner->initial = $p['initial'];
+                $homeOwner->last_name = $p['last_name'];
+                $homeOwner->upload_file = $filename;
+                $homeOwner->uploaded_at = $upload_time;
                 $homeOwner->save();
             }
         }

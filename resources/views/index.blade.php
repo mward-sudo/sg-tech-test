@@ -17,5 +17,27 @@
                 </div>
             </form>
         </div>
+
+        <div id="uploads-list"></div>
     </div>
+
+    <script>
+        function getUploadsList(params) {
+            var xhttp = new XMLHttpRequest()
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("uploads-list").innerHTML = this.responseText
+                }
+            }
+            xhttp.open("GET", "/api/uploads/", true)
+            xhttp.send()
+        }
+        getUploadsList()
+
+        Dropzone.options.fileUpload = {
+            init: function() {
+                this.on("success", function() { getUploadsList() })
+            }
+        };
+    </script>
 </x-layout>

@@ -20,6 +20,7 @@ class CreateHomeownersTable extends Migration
             $table->string('initial')->nullable();
             $table->string('last_name');
             $table->string('upload_file')->nullable();
+            $table->dateTime('uploaded_at');
             $table->timestamps();
         });
     }

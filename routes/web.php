@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('home-owners/{uploadFile}', [HomeOwnersController::class, 'show']);
+Route::get('home-owners/{uploadFile}', 'App\Http\Controllers\HomeOwnersController@show')->name('home-owners');
 
 // Uploads
 Route::get('upload-ui', [FileUploadController::class, 'dropzoneUi']);
